@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>执行环境-作用域</title>
+  </head>
+  <body>
+    <h2>执行环境-作用域</h2>
+    <script>
+      var color="blue";
+      function changeColor(){
+        var anotherColor="red";
+        function swapColors(){
+          var tempColor = anotherColor;
+          anotherColor=color;
+          color=tempColor;
+          //这里可以获取到color 和anotherColor 和tempColor
+          console.log("3 最里层的"+color);
+          console.log("3 最里层的"+anotherColor);//报错 defined 未定义
+          console.log("3 最里层的"+tempColor);//报错 defined 未定义
+        }
+        //这里可以访问到color 和 antherColor 但不能访问tempColor
+        console.log("2 中间层的"+color);
+        console.log("2 中间层的"+anotherColor);
+        //console.log("2 中间层的"+tempColor);//报错 defined 未定义
+        swapColors();
+      }
+      //这里只能访问到color
+      console.log("1 最外层的"+color);
+      //console.log("1 最外层的"+anotherColor);//报错 defined 未定义
+      //console.log("1 最外层的"+tempColor);//报错 defined 未定义
+      changeColor();
+    </script>
+  </body>
+</html>
